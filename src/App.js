@@ -11,6 +11,7 @@ function App() {
   const [canvasSize, setCanvasSize] = useState({ width: 300, height: 300 });
   const [isStartButtonPressed, setIsStartButtonPressed] = useState(false);
   const [isStopButtonPressed, setIsStopButtonPressed] = useState(false);
+  const lastTimeRef = useRef(null);
 
   // 画面サイズに合わせてキャンバスサイズを動的に調整
   const updateCanvasSize = useCallback(() => {
@@ -24,19 +25,25 @@ function App() {
     return () => window.removeEventListener('resize', updateCanvasSize);
   }, [updateCanvasSize]);
 
-  const draw = useCallback(() => {
+  const draw = useCallback((timestamp) => {
+    if (!lastTimeRef.current) lastTimeRef.current = timestamp;
+    const deltaTime = timestamp - lastTimeRef.current;
+
+    // deltaTimeを使用してアニメーションの状態を更新
+    const rotationIncrement = rotationSpeed.current * deltaTime * 0.1;
+    rotationRef.current += rotationIncrement * (Math.PI / 180);
+
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
     const { width, height } = canvas;
     const centerX = width / 2;
     const centerY = height / 2;
     const radius = Math.min(width, height) / 2;
-    const rotation = rotationRef.current;
 
     context.clearRect(0, 0, width, height);
     colors.forEach((color, i) => {
-      const startAngle = (i * 2 * Math.PI) / colors.length + rotation;
-      const endAngle = ((i + 1) * 2 * Math.PI) / colors.length + rotation;
+      const startAngle = (i * 2 * Math.PI) / colors.length + rotationRef.current;
+      const endAngle = ((i + 1) * 2 * Math.PI) / colors.length + rotationRef.current;
       context.beginPath();
       context.moveTo(centerX, centerY);
       context.arc(centerX, centerY, radius, startAngle, endAngle);
@@ -51,23 +58,31 @@ function App() {
       context.fillStyle = 'white';
       context.font = '18px Arial';
       context.fillText(items[i], radius - 10, 0);
+      context.strokeStyle = 'black';
+      context.lineWidth = 0.3;
+      context.strokeText(items[i], radius - 10, 0);
       context.restore();
     });
 
+    lastTimeRef.current = timestamp;
+
     if (isSpinning) {
-      rotationRef.current += rotationSpeed.current * (Math.PI / 180);
       requestAnimationFrame(draw);
     }
   }, [isSpinning]);
 
+  // `useEffect`で`draw`関数を初期化する際に、`requestAnimationFrame`を呼び出します。
   useEffect(() => {
-    if (isSpinning) {
-      requestAnimationFrame(draw);
-    }
+    const animate = (time) => {
+      if (isSpinning) {
+        draw(time);
+      }
+    };
+    requestAnimationFrame(animate);
   }, [isSpinning, draw]);
 
   const startSpin = () => {
-    rotationSpeed.current = 5; // 回転速度を調整
+    rotationSpeed.current = 8; // 回転速度を調整
     setIsSpinning(true);
     setIsStartButtonPressed(true);
     setTimeout(() => setIsStartButtonPressed(false), 200);

@@ -15,7 +15,7 @@ function App() {
 
   // 画面サイズに合わせてキャンバスサイズを動的に調整
   const updateCanvasSize = useCallback(() => {
-    const size = window.innerWidth < 768 ? window.innerWidth * 0.9 : Math.min(600, window.innerWidth * 0.75);
+    const size = window.innerWidth < 768 ? window.innerWidth * 0.9 : Math.min(500, window.innerWidth * 0.75);
     setCanvasSize({ width: size, height: size });
   }, []);
 
@@ -55,7 +55,7 @@ function App() {
       context.rotate(startAngle + Math.PI / colors.length);
       context.textAlign = 'right';
       context.fillStyle = 'white';
-      context.font = '20px Arial';
+      context.font = '20px "MS Mincho", "Hiragino Mincho ProN", serif';
       context.fillText(items[i], radius - 10, 0);
       context.strokeStyle = 'black';
       context.lineWidth = 0.3;
@@ -103,29 +103,26 @@ function App() {
   };
 
   const getButtonStyle = (isPressed) => ({
-    padding: '10px',
     width: '60px',
     height: '60px',
     fontSize: '16px',
     color: 'white',
-    border: 'none',
     borderRadius: '50%',
     cursor: 'pointer',
     margin: '10px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    transition: 'transform 0.1s ease, box-shadow 0.1s ease, background-color 0.3s ease',
     backgroundColor: isPressed ? '#3e8e41' : '#4CAF50',
     boxShadow: isPressed ? '0 2px #666' : '0 4px #888',
     transform: isPressed ? 'translateY(4px)' : 'none',
   });
 
   return (
-    <div className="canvas-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100vh', margin: '0 auto', padding: '20px', overflow: 'hidden' }}>
-      <img src="image.png" alt="自分、なに飲むん？" style={{ maxWidth: '90%', height: 'auto', zIndex: '1', marginBottom: '20px' }}/>
-      <div style={{ width: canvasSize.width, height: canvasSize.height, position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ width: '0', height: '0', borderLeft: '20px solid transparent', borderRight: '20px solid transparent', borderTop: '50px solid red', position: 'absolute', bottom: '93%', left: '50%', transform: 'translateX(-50%)', zIndex: '10' }}></div>
+    <div className="canvas-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100vh', overflow: 'hidden' }}>
+      <img src="image.png" alt="自分、なに飲むん？" style={{ maxWidth: '100%', marginBottom: '20px' }}/>
+      <div style={{ width: canvasSize.width, height: canvasSize.height, position: 'relative', display: 'flex'}}>
+        <div style={{ borderLeft: '20px solid transparent', borderRight: '20px solid transparent', borderTop: '50px solid red', position: 'absolute', bottom: '93%', left: '50%', transform: 'translateX(-50%)' }}></div>
         <canvas ref={canvasRef} width={canvasSize.width} height={canvasSize.height} />
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%', maxWidth: '300px' }}>

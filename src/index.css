@@ -1,7 +1,7 @@
 @media (max-width: 600px) {
   .canvas-container {
     width: 100%;
-    min-width: 300px; /* 最大幅を設定して画面幅を超えないようにする */
+    max-width: 300px; /* 最大幅を設定して画面幅を超えないようにする */
     margin: auto;
   }
 }

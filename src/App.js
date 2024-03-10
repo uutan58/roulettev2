@@ -15,7 +15,7 @@ function App() {
 
   // 画面サイズに合わせてキャンバスサイズを動的に調整
   const updateCanvasSize = useCallback(() => {
-    const size = window.innerWidth < 768 ? window.innerWidth * 0.9 : Math.min(600, window.innerWidth * 0.75);
+    const size = window.innerWidth < 768 ? window.innerWidth * 0.9 : Math.min(450, window.innerWidth * 0.75);
     setCanvasSize({ width: size, height: size });
   }, []);
 
@@ -50,7 +50,6 @@ function App() {
       context.closePath();
       context.fillStyle = color;
       context.fill();
-
       context.save();
       context.translate(centerX, centerY);
       context.rotate(startAngle + Math.PI / colors.length);

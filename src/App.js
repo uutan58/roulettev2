@@ -66,7 +66,7 @@ function App() {
   }, [isSpinning, draw]);
 
   const startSpin = () => {
-    rotationSpeed.current = 2.5; // 回転速度を調整
+    rotationSpeed.current = 5; // 回転速度を調整
     setIsSpinning(true);
     setIsStartButtonPressed(true); // ボタン押下状態を設定
     setTimeout(() => setIsStartButtonPressed(false), 200); // 押下状態をリセット

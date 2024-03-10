@@ -123,7 +123,7 @@ function App() {
 
   return (
     <div className="canvas-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100vh', maxWidth: '100%', margin: '0 auto', padding: '20px', overflow: 'hidden' }}>
-      <img src="image.png" alt="自分、なに飲むん？" style={{ position: 'absolute', top: '10%', left: '50%', transform: 'translate(-50%, -50%)', maxWidth: '90%', height: 'auto', zIndex: '1' }}/>
+      <img src="image.png" alt="自分、なに飲むん？" style={{ position: 'absolute', top: '10%', left: '55%', transform: 'translate(-50%, -50%)', maxWidth: '90%', height: 'auto', zIndex: '1' }}/>
       <div style={{ position: 'relative', width: '100%', maxWidth: canvasSize.width, height: canvasSize.height, marginBottom: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ width: '0', height: '0', borderLeft: '20px solid transparent', borderRight: '20px solid transparent', borderTop: '50px solid red', position: 'absolute', bottom: '95%', left: '50%', transform: 'translateX(-50%)', zIndex: '10' }}></div>
         <canvas ref={canvasRef} width={canvasSize.width} height={canvasSize.height} />

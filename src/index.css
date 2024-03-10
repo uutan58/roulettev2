@@ -1,0 +1,12 @@
+@media (max-width: 600px) {
+  .canvas-container {
+    width: 100%;
+    max-width: 300px; /* 最大幅を設定して画面幅を超えないようにする */
+    margin: auto;
+  }
+
+  .arrow {
+    left: calc(50% - 15px); /* 矢印を中心に配置 */
+    bottom: -15px; /* 矢印の位置を微調整 */
+  }
+}

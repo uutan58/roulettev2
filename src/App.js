@@ -124,7 +124,7 @@ function App() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100vw', height: '100vh', maxWidth: '100%', margin: '0 auto', padding: '20px', overflow: 'hidden' }}>
-      <img src="image.png" alt="自分、なに飲むん？" style={{ position: 'absolute', top: '12%', left: '50%', transform: 'translate(-50%, -50%)' }}/>
+      <img src="image.png" alt="自分、なに飲むん？" style={{ position: 'absolute', top: '12%', left: '55%', transform: 'translate(-50%, -50%)' }}/>
       <div style={{ position: 'relative', width: canvasSize.width, height: canvasSize.height, marginBottom: '20px' }}>
       <div style={{ width: '0', height: '0', borderLeft: '20px solid transparent', borderRight: '20px solid transparent', borderTop: '50px solid red', position: 'absolute', bottom: '93%', left: '50%', transform: 'translateX(-50%)', zIndex: '10' }}></div>
         <canvas ref={canvasRef} width={canvasSize.width} height={canvasSize.height} />

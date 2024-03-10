@@ -58,7 +58,7 @@ function App() {
       context.font = '20px "MS Mincho", "Hiragino Mincho ProN", serif';
       context.fillText(items[i], radius - 10, 0);
       context.strokeStyle = 'black';
-      context.lineWidth = 0.3;
+      context.lineWidth = 0.2;
       context.strokeText(items[i], radius - 10, 0);
       context.restore();
     });
@@ -92,7 +92,7 @@ function App() {
     setTimeout(() => setIsStopButtonPressed(false), 200);
     const decelerate = () => {
         if (rotationSpeed.current > 0.01) {
-            rotationSpeed.current *= 0.99; // 減速率をより小さくして緩やかに停止
+            rotationSpeed.current *= 0.995; // 減速率をより小さくして緩やかに停止
             requestAnimationFrame(decelerate);
         } else {
             rotationSpeed.current = 0;
@@ -119,15 +119,53 @@ function App() {
   });
 
   return (
-    <div className="canvas-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100vh', overflow: 'hidden' }}>
-      <img src="image.png" alt="自分、なに飲むん？" style={{ maxWidth: '100%', marginBottom: '20px' }}/>
-      <div style={{ width: canvasSize.width, height: canvasSize.height, position: 'relative', display: 'flex'}}>
-        <div style={{ borderLeft: '20px solid transparent', borderRight: '20px solid transparent', borderTop: '50px solid red', position: 'absolute', bottom: '93%', left: '50%', transform: 'translateX(-50%)' }}></div>
+    <div className="canvas-container"
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: '100vh',
+        overflow: 'hidden' }}>
+
+      <img src="image.png" alt="自分、なに飲むん？" style={{ maxWidth: '100%', marginBottom: '30px' }}/>
+
+      <div style={{
+        width: canvasSize.width,
+        height: canvasSize.height,
+        position: 'relative',
+        display: 'flex'}}>
+
+        <div style={{
+          borderLeft: '20px solid transparent',
+          borderRight: '20px solid transparent',
+          borderTop: '50px solid red',
+          position: 'absolute',
+          bottom: '93%',
+          left: '50%',
+          transform: 'translateX(-50%)' }}></div>
+
         <canvas ref={canvasRef} width={canvasSize.width} height={canvasSize.height} />
       </div>
-      <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%', maxWidth: '300px' }}>
-        <button onClick={startSpin} style={getButtonStyle(isStartButtonPressed)}>START</button>
-        <button onClick={stopSpin} style={getButtonStyle(isStopButtonPressed)}>STOP</button>
+
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-around',
+        width: '100%',
+        maxWidth: '300px' }}>
+        <button
+          onClick={startSpin}
+          style={getButtonStyle(isStartButtonPressed)}
+          >
+            START
+          </button>
+        <button
+          onClick={stopSpin}
+          style={getButtonStyle(isStopButtonPressed)}
+          >
+            STOP
+          </button>
       </div>
     </div>
   );

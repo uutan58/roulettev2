@@ -1,29 +1,44 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import Modal from './components/Modal';
+import Button from './components/Button';
 
 const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
-const items = ['ビール', 'レモンサワー', 'ハイボール', 'ウイスキー', '日本酒', '焼酎'];
 
 function App() {
   const [isSpinning, setIsSpinning] = useState(false);
   const rotationRef = useRef(0);
-  const rotationSpeed = useRef(1.0); // 初期回転速度を調整
+  const rotationSpeed = useRef(1.0);
   const canvasRef = useRef(null);
   const [canvasSize, setCanvasSize] = useState({ width: 300, height: 300 });
   const [isStartButtonPressed, setIsStartButtonPressed] = useState(false);
   const [isStopButtonPressed, setIsStopButtonPressed] = useState(false);
   const lastTimeRef = useRef(null);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [items, setItems] = useState(['レモンサワー', 'ビール', '日本酒', 'ハイボール', 'ウイスキー', '焼酎']); // アプリ名の状態管理
+  const [editIndex, setEditIndex] = useState(null); // 編集中のアイテムのインデックス
+  const [editText, setEditText] = useState(''); // 編集中のテキスト
 
-  // 画面サイズに合わせてキャンバスサイズを動的に調整
+  // 画面サイズに合わせてキャンバスサイズを動的に調整するuseCallback
   const updateCanvasSize = useCallback(() => {
     const size = window.innerWidth < 768 ? window.innerWidth * 0.9 : Math.min(500, window.innerWidth * 0.75);
     setCanvasSize({ width: size, height: size });
   }, []);
 
+  // ウィンドウサイズ変更時のイベントリスナーを設定するuseEffect
   useEffect(() => {
     window.addEventListener('resize', updateCanvasSize);
     updateCanvasSize();
     return () => window.removeEventListener('resize', updateCanvasSize);
   }, [updateCanvasSize]);
+
+  // アイテムの名前を更新する関数
+  const updateItem = (index, newName) => {
+    const updatedItems = items.map((item, i) => i === index ? newName : item);
+    setItems(updatedItems);
+    setEditIndex(null); // 編集モードを解除
+    setEditText(''); // 編集用テキストをクリア
+  };
 
   const draw = useCallback((timestamp) => {
     if (!lastTimeRef.current) lastTimeRef.current = timestamp;
@@ -95,81 +110,79 @@ function App() {
             rotationSpeed.current *= 0.995; // 減速率をより小さくして緩やかに停止
             requestAnimationFrame(decelerate);
         } else {
-            rotationSpeed.current = 0;
-            setIsSpinning(false);
+          rotationSpeed.current = 0;
+          setIsSpinning(false);
+
+          const selectedAngle = (rotationRef.current % (2 * Math.PI)) + Math.PI / colors.length;
+          const selectedIndex = Math.floor(colors.length - (selectedAngle / (2 * Math.PI)) * colors.length) % colors.length;
+          setSelectedItem(items[selectedIndex]);
+          setIsModalOpen(true);
         }
     };
     decelerate();
   };
 
-  const getButtonStyle = (isPressed) => ({
-    width: '60px',
-    height: '60px',
-    fontSize: '16px',
-    color: 'white',
-    borderRadius: '50%',
-    cursor: 'pointer',
-    margin: '10px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: isPressed ? '#3e8e41' : '#4CAF50',
-    boxShadow: isPressed ? '0 2px #666' : '0 4px #888',
-    transform: isPressed ? 'translateY(4px)' : 'none',
-  });
-
   return (
-    <div className="canvas-container"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-        height: '100vh',
-        overflow: 'hidden' }}>
+    <div>
+      <div className="canvas-container"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          height: '100vh',
+          overflow: 'hidden'
+        }}>
 
-      <img src="image.png" alt="自分、なに飲むん？" style={{ maxWidth: '100%', marginBottom: '30px' }}/>
-
-      <div style={{
-        width: canvasSize.width,
-        height: canvasSize.height,
-        position: 'relative',
-        display: 'flex'}}>
+        <img src="image.png" alt="自分、なに飲むん？" style={{ maxWidth: '100%', marginBottom: '30px' }}/>
 
         <div style={{
-          borderLeft: '20px solid transparent',
-          borderRight: '20px solid transparent',
-          borderTop: '50px solid red',
-          position: 'absolute',
-          bottom: '93%',
-          left: '50%',
-          transform: 'translateX(-50%)' }}></div>
+          width: canvasSize.width,
+          height: canvasSize.height,
+          position: 'relative',
+          display: 'flex'}}>
 
-        <canvas ref={canvasRef} width={canvasSize.width} height={canvasSize.height} />
-      </div>
+          <div style={{
+            borderLeft: '20px solid transparent',
+            borderRight: '20px solid transparent',
+            borderTop: '50px solid red',
+            position: 'absolute',
+            bottom: '93%',
+            left: '50%',
+            transform: 'translateX(-50%)' }}></div>
 
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-around',
-        width: '100%',
-        maxWidth: '300px' }}>
-        <button
-          onClick={startSpin}
-          style={getButtonStyle(isStartButtonPressed)}
-          >
-            START
-          </button>
-        <button
-          onClick={stopSpin}
-          style={getButtonStyle(isStopButtonPressed)}
-          >
-            STOP
-          </button>
+          <canvas ref={canvasRef} width={canvasSize.width} height={canvasSize.height} />
+        </div>
+
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Button onClick={startSpin} isPressed={isStartButtonPressed}>START</Button>
+          <Button onClick={stopSpin} isPressed={isStopButtonPressed}>STOP</Button>
+        </div>
+        <Modal isOpen={isModalOpen} item={selectedItem} onClose={() => setIsModalOpen(false)} />
+        </div>
+        <div className="items-list" style={{ maxWidth: '200px' }}>
+        {/* アイテムリストと編集機能を表示 */}
+        {items.map((item, index) => (
+          <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+            {editIndex === index ? (
+              <input
+                type="text"
+                value={editText}
+                onChange={(e) => setEditText(e.target.value)}
+                onBlur={() => updateItem(index, editText)}
+                autoFocus
+                style={{ marginRight: '10px' }}
+              />
+            ) : (
+              <span style={{ marginRight: '10px' }}>{item}</span>
+            )}
+            <Button onClick={() => { setEditIndex(index); setEditText(item); }}>編集</Button>
+          </div>
+        ))}
       </div>
     </div>
   );
 }
 
 export default App;
-

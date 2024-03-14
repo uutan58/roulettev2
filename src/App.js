@@ -21,7 +21,7 @@ function App() {
 
   // 画面サイズに合わせてキャンバスサイズを動的に調整するuseCallback
   const updateCanvasSize = useCallback(() => {
-    const size = window.innerWidth < 768 ? window.innerWidth * 0.9 : Math.min(500, window.innerWidth * 0.75);
+    const size = window.innerWidth < 450 ? window.innerWidth * 0.7 : Math.min(500, window.innerWidth * 0.6);
     setCanvasSize({ width: size, height: size });
   }, []);
 
@@ -70,7 +70,7 @@ function App() {
       context.rotate(startAngle + Math.PI / colors.length);
       context.textAlign = 'right';
       context.fillStyle = 'white';
-      context.font = '20px "MS Mincho", "Hiragino Mincho ProN", serif';
+      context.font = '14px "MS Mincho", "Hiragino Mincho ProN", serif';
       context.fillText(items[i], radius - 10, 0);
       context.strokeStyle = 'black';
       context.lineWidth = 0.2;
@@ -131,7 +131,7 @@ function App() {
           alignItems: 'center',
           justifyContent: 'center',
           width: '100%',
-          height: '100vh',
+          height: '75vh',
           overflow: 'hidden'
         }}>
 
@@ -164,7 +164,7 @@ function App() {
         <div className="items-list" style={{ maxWidth: '200px' }}>
         {/* アイテムリストと編集機能を表示 */}
         {items.map((item, index) => (
-          <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+          <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
             {editIndex === index ? (
               <input
                 type="text"
@@ -172,7 +172,6 @@ function App() {
                 onChange={(e) => setEditText(e.target.value)}
                 onBlur={() => updateItem(index, editText)}
                 autoFocus
-                style={{ marginRight: '10px' }}
               />
             ) : (
               <span style={{ marginRight: '10px' }}>{item}</span>

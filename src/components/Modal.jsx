@@ -1,4 +1,25 @@
+import React, { useState, useEffect } from 'react';
+
 function Modal({ isOpen, item, onClose }) {
+  const messages = [
+    '【{item}】ください！これ何杯目なん？飲み過ぎ注意やで〜。',
+    '【{item}】ください！お酒と同じだけの水飲んだほうがええで。',
+    '【{item}】ください！お前は明日を一日無駄にする覚悟ができているのか…？',
+    '【{item}】ください！これを飲んだ人は、お酒で失敗したエピソードを発表してや〜。',
+    '【{item}】ください！'
+  ];
+
+  // 状態として選択されたメッセージを保持
+  const [selectedMessage, setSelectedMessage] = useState('');
+
+  // モーダルが開かれるたびにランダムなメッセージを選択
+  useEffect(() => {
+    if (isOpen) {
+      const randomMessage = messages[Math.floor(Math.random() * messages.length)].replace('{item}', item);
+      setSelectedMessage(randomMessage);
+    }
+  }, [isOpen, item, messages]);
+
   if (!isOpen) return null;
 
   return (
@@ -14,12 +35,12 @@ function Modal({ isOpen, item, onClose }) {
       backgroundColor: 'rgba(0,0,0,0.5)',
     }}>
       <div style={{
-        padding: '20px',
+        padding: '50px',
         backgroundColor: '#fff',
         borderRadius: '5px',
       }}>
-        <p>{item}が選ばれました！</p>
-        <button onClick={onClose}>閉じる</button>
+        <p>{selectedMessage}</p>
+        <button onClick={onClose}>おかわりっ！</button>
       </div>
     </div>
   );

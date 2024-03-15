@@ -1,33 +1,33 @@
 import React, { useState } from 'react';
 
 const Button = ({ children, onClick }) => {
+  const [backgroundColor, setBackgroundColor] = useState('#FFFFFF'); // 初期背景色
+  const [isPressed, setIsPressed] = useState(false); // ボタンが押されているかの状態
+
   // ランダムな色を生成する関数
   const getRandomColor = () => {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
+    const colors = [
+      '#e6194B', '#3cb44b', '#ffe119', '#0082c8', '#f58231', 
+      '#911eb4', '#46f0f0', '#f032e6', '#d2f53c', '#fabebe', 
+      '#008080', '#e6beff', '#aa6e28', '#fffac8', '#800000', 
+      '#aaffc3', '#808000', '#ffd8b1', '#000080', '#808080', 
+      '#ffe4e1', '#b15928'
+    ];
+    return colors[Math.floor(Math.random() * colors.length)];
   };
-
-  // ボタンの背景色と押されている状態を管理するステート
-  const [backgroundColor, setBackgroundColor] = useState('#4CAF50');
-  const [isPressed, setIsPressed] = useState(false);
 
   // ボタンクリック時の処理
   const handleClick = (e) => {
-    setBackgroundColor(getRandomColor()); // 背景色を変更
-    setIsPressed(!isPressed); // 押された状態を切り替え
+    setBackgroundColor(getRandomColor());
     onClick && onClick(e); // 親コンポーネントから渡されたonClickイベントを呼び出す
   };
 
-  // ボタンのスタイル（押されている状態に応じて変更）
+  // ボタンのスタイル
   const style = {
     width: '60px',
     height: '60px',
     fontSize: '16px',
-    color: 'white',
+    color: 'black',
     borderRadius: '50%',
     cursor: 'pointer',
     margin: '10px',
@@ -35,12 +35,18 @@ const Button = ({ children, onClick }) => {
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor,
-    boxShadow: isPressed ? '0 2px #666' : '0 4px #888',
-    transform: isPressed ? 'translateY(2px)' : 'none',
+    boxShadow: '0 4px #888',
+    transform: isPressed ? 'translateY(2px)' : 'translateY(-2px)', // 押されている状態に応じて変更
   };
 
   return (
-    <button onMouseDown={() => setIsPressed(true)} onMouseUp={() => setIsPressed(false)} onMouseLeave={() => setIsPressed(false)} onClick={handleClick} style={style}>
+    <button
+      onMouseDown={() => setIsPressed(true)}
+      onMouseUp={() => setIsPressed(false)}
+      onMouseLeave={() => setIsPressed(false)}
+      onClick={handleClick}
+      style={style}
+    >
       {children}
     </button>
   );

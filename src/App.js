@@ -107,7 +107,7 @@ function App() {
     setTimeout(() => setIsStopButtonPressed(false), 200);
     const decelerate = () => {
         if (rotationSpeed.current > 0.01) {
-            rotationSpeed.current *= 0.995; // 減速率をより小さくして緩やかに停止
+            rotationSpeed.current *= 0.990; // 減速率をより小さくして緩やかに停止
             requestAnimationFrame(decelerate);
         } else {
             rotationSpeed.current = 0;
@@ -136,7 +136,6 @@ function App() {
           alignItems: 'center',
           justifyContent: 'center',
           width: '100%',
-          height: '75vh',
           overflow: 'hidden'
         }}>
 
@@ -164,26 +163,30 @@ function App() {
           <Button onClick={startSpin} isPressed={isStartButtonPressed}>START</Button>
           <Button onClick={stopSpin} isPressed={isStopButtonPressed}>STOP</Button>
         </div>
+        <img src="image1.png" alt="ほかになに飲むん？" style={{ maxWidth: '100%'}}/>
         <Modal isOpen={isModalOpen} item={selectedItem} onClose={() => setIsModalOpen(false)} />
         </div>
+
         <div className="items-list" style={{ maxWidth: '200px' }}>
         {/* アイテムリストと編集機能を表示 */}
-        {items.map((item, index) => (
-          <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
-            {editIndex === index ? (
-              <input
-                type="text"
-                value={editText}
-                onChange={(e) => setEditText(e.target.value)}
-                onBlur={() => updateItem(index, editText)}
-                autoFocus
-              />
-            ) : (
-              <span style={{ marginRight: '10px' }}>{item}</span>
-            )}
-            <Button onClick={() => { setEditIndex(index); setEditText(item); }}>編集</Button>
-          </div>
-        ))}
+        <div style={{ display: 'flex', flexWrap: 'wrap', boxSizing: 'border-box' }}>
+  {items.map((item, index) => (
+    <div key={index} style={{ width: '50%', boxSizing: 'border-box', display: 'flex', alignItems: 'center', padding: '10px' }}>
+              {editIndex === index ? (
+                <input
+                  type="text"
+                  value={editText}
+                  onChange={(e) => setEditText(e.target.value)}
+                  onBlur={() => updateItem(index, editText)}
+                  autoFocus
+                />
+              ) : (
+                <span style={{ marginRight: '10px' }}>{item}</span>
+              )}
+              <Button onClick={() => { setEditIndex(index); setEditText(item); }}>編集</Button>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

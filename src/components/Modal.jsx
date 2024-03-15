@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 function Modal({ isOpen, item, onClose }) {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const messages = [
     '【{item}】ください！これ何杯目なん？飲み過ぎ注意やで〜。',
     '【{item}】ください！お酒と同じだけの水飲んだほうがええで。',

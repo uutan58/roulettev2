@@ -83,7 +83,7 @@ function App() {
     if (isSpinning) {
       requestAnimationFrame(draw);
     }
-  }, [isSpinning]);
+  }, [isSpinning, items]);
 
   // `useEffect`で`draw`関数を初期化する際に、`requestAnimationFrame`を呼び出します。
   useEffect(() => {
@@ -96,7 +96,7 @@ function App() {
   }, [isSpinning, draw]);
 
   const startSpin = () => {
-    rotationSpeed.current = 8; // 回転速度を調整
+    rotationSpeed.current = 9; // 回転速度を調整
     setIsSpinning(true);
     setIsStartButtonPressed(true);
     setTimeout(() => setIsStartButtonPressed(false), 200);
@@ -110,17 +110,22 @@ function App() {
             rotationSpeed.current *= 0.995; // 減速率をより小さくして緩やかに停止
             requestAnimationFrame(decelerate);
         } else {
-          rotationSpeed.current = 0;
-          setIsSpinning(false);
+            rotationSpeed.current = 0;
+            setIsSpinning(false);
 
-          const selectedAngle = (rotationRef.current % (2 * Math.PI)) + Math.PI / colors.length;
-          const selectedIndex = Math.floor(colors.length - (selectedAngle / (2 * Math.PI)) * colors.length) % colors.length;
-          setSelectedItem(items[selectedIndex]);
-          setIsModalOpen(true);
+            // ルーレットが停止した時点での角度（ラジアン単位）
+            const finalAngleAdjustment = 30 * (Math.PI / 180); // 15度のラジアン値
+            const adjustedFinalAngle = (rotationRef.current + finalAngleAdjustment) % (2 * Math.PI); // 調整された最終角度を計算
+            const itemsCount = items.length; // アイテムの数
+            // 調整された角度を使用して12時の位置にあるアイテムのインデックスを計算
+            let selectedIndex = Math.floor(((2 * Math.PI - adjustedFinalAngle) / (2 * Math.PI)) * itemsCount) % itemsCount;
+            selectedIndex = (selectedIndex + itemsCount / 1.2) % itemsCount; // 正しいアイテムの選択のために半分のアイテム数を加算
+            setSelectedItem(items[selectedIndex]);
+            setIsModalOpen(true);
         }
     };
     decelerate();
-  };
+};
 
   return (
     <div>

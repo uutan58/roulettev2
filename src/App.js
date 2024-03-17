@@ -38,6 +38,12 @@ function App() {
     setItems(updatedItems);
     setEditIndex(null); // 編集モードを解除
     setEditText(''); // 編集用テキストをクリア
+
+    if (!isSpinning) {
+      setIsSpinning(true);
+      // 一瞬で停止させることで、描画を更新
+      setTimeout(() => setIsSpinning(false), 10);
+    }
   };
 
   const draw = useCallback((timestamp) => {
@@ -65,6 +71,7 @@ function App() {
       context.closePath();
       context.fillStyle = color;
       context.fill();
+
       context.save();
       context.translate(centerX, centerY);
       context.rotate(startAngle + Math.PI / colors.length);

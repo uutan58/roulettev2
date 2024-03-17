@@ -1,6 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // useNavigateをimport
-import Button from './components/Button'; // Buttonコンポーネントのパスは適宜調整してください
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const navigate = useNavigate();

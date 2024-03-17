@@ -24,8 +24,8 @@ const Button = ({ children, onClick }) => {
 
   // ボタンのスタイル
   const style = {
-    width: '60px',
-    height: '60px',
+    width: '50px',
+    height: '50px',
     fontSize: '16px',
     color: 'black',
     borderRadius: '50%',

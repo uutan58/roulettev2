@@ -107,7 +107,7 @@ function App() {
     setTimeout(() => setIsStopButtonPressed(false), 200);
     const decelerate = () => {
         if (rotationSpeed.current > 0.01) {
-            rotationSpeed.current *= 0.990; // 減速率をより小さくして緩やかに停止
+            rotationSpeed.current *= 0.985; // 減速率をより小さくして緩やかに停止
             requestAnimationFrame(decelerate);
         } else {
             rotationSpeed.current = 0;
@@ -167,28 +167,34 @@ function App() {
         <Modal isOpen={isModalOpen} item={selectedItem} onClose={() => setIsModalOpen(false)} />
         </div>
 
-        <div className="items-list" style={{ maxWidth: '200px' }}>
-        {/* アイテムリストと編集機能を表示 */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', boxSizing: 'border-box' }}>
-  {items.map((item, index) => (
-    <div key={index} style={{ width: '50%', boxSizing: 'border-box', display: 'flex', alignItems: 'center', padding: '10px' }}>
+        <div className="items-list" style={{ maxWidth: '400px', display: 'flex', flexWrap: 'wrap', boxSizing: 'border-box' }}>
+          {items.map((item, index) => (
+            <div key={index} style={{ width: '50%', padding: '10px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+              {/* アイテム名または編集用テキストボックス */}
               {editIndex === index ? (
                 <input
                   type="text"
                   value={editText}
                   onChange={(e) => setEditText(e.target.value)}
-                  onBlur={() => updateItem(index, editText)}
                   autoFocus
+                  style={{ flexGrow: 1, marginBottom: '10px', width: '100%', boxSizing: 'border-box' }} // widthとboxSizingを調整
                 />
               ) : (
-                <span style={{ marginRight: '10px' }}>{item}</span>
+                <span style={{ flexGrow: 1, marginBottom: '10px', width: '100%' }}>{item}</span> // widthを100%に設定
               )}
-              <Button onClick={() => { setEditIndex(index); setEditText(item); }}>編集</Button>
+
+              {/* 編集または完了ボタン */}
+              <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
+                <Button
+                  onClick={() => editIndex === index ? updateItem(index, editText) : setEditIndex(index) || setEditText(item)}
+                  style={{ padding: '5px 10px', fontSize: '0.5rem', minWidth: '64px', height: '32px' }}>
+                  {editIndex === index ? '完了' : '編集'}
+                </Button>
+              </div>
             </div>
           ))}
         </div>
       </div>
-    </div>
   );
 }
 

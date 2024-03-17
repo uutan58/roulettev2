@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 
 // messages配列をコンポーネントの外部に配置
 const messages = [
-  '【{item}】ください！これ何杯目なん？飲み過ぎ注意やで〜。',
-  '【{item}】ください！お酒と同じだけの水飲んだほうがええで。',
-  '【{item}】ください！お前は明日を一日無駄にする覚悟ができているのか…？',
-  '【{item}】ください！これを飲んだ人は、お酒で失敗したエピソードを発表してや〜。',
-  '【{item}】ください！'
+  '【{item}】にするわ〜。これ何杯目なん？飲み過ぎ注意やで〜。',
+  '【{item}】にするわ〜。お酒と同じだけの水飲んだほうがええで。',
+  '【{item}】にするわ〜。お前は明日を一日無駄にする覚悟ができているのか…？',
+  '【{item}】にするわ〜。これを飲んだ人は、お酒で失敗したエピソードを発表してや〜。',
+  '【{item}】にするわ〜。'
 ];
 
 function Modal({ isOpen, item, onClose }) {
@@ -46,8 +46,10 @@ function Modal({ isOpen, item, onClose }) {
         borderRadius: '5px',
       }}>
         <p>{selectedMessage}</p>
-        <button onClick={onClose} style={{ padding: '5px', marginRight: '30px' }}>おかわりっ！</button>
-        <button onClick={handleCheckout} style={{ padding: '5px', marginLeft: '30px' }}>お会計！</button>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+          <button onClick={onClose} style={{ padding: '5px', margin: '0 15px' }}>おかわりっ！</button>
+          <button onClick={handleCheckout} style={{ padding: '5px', margin: '0 15px' }}>今日はもういらん！</button>
+        </div>
       </div>
     </div>
   );

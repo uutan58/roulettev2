@@ -56,6 +56,7 @@ function Roulette() {
     rotationRef.current += rotationIncrement * (Math.PI / 180);
 
     const canvas = canvasRef.current;
+    if (!canvas) return;
     const context = canvas.getContext('2d');
     const { width, height } = canvas;
     const centerX = width / 2;

@@ -1,25 +1,30 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+// messages配列をコンポーネントの外部に配置
+const messages = [
+  '【{item}】ください！これ何杯目なん？飲み過ぎ注意やで〜。',
+  '【{item}】ください！お酒と同じだけの水飲んだほうがええで。',
+  '【{item}】ください！お前は明日を一日無駄にする覚悟ができているのか…？',
+  '【{item}】ください！これを飲んだ人は、お酒で失敗したエピソードを発表してや〜。',
+  '【{item}】ください！'
+];
 
 function Modal({ isOpen, item, onClose }) {
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const messages = [
-    '【{item}】ください！これ何杯目なん？飲み過ぎ注意やで〜。',
-    '【{item}】ください！お酒と同じだけの水飲んだほうがええで。',
-    '【{item}】ください！お前は明日を一日無駄にする覚悟ができているのか…？',
-    '【{item}】ください！これを飲んだ人は、お酒で失敗したエピソードを発表してや〜。',
-    '【{item}】ください！'
-  ];
+  const navigate = useNavigate();
 
-  // 状態として選択されたメッセージを保持
+  const handleCheckout = () => {
+    navigate('/checkout');
+  };
+
   const [selectedMessage, setSelectedMessage] = useState('');
 
-  // モーダルが開かれるたびにランダムなメッセージを選択
   useEffect(() => {
     if (isOpen) {
       const randomMessage = messages[Math.floor(Math.random() * messages.length)].replace('{item}', item);
       setSelectedMessage(randomMessage);
     }
-  }, [isOpen, item, messages]);
+  }, [isOpen, item]); // messagesは静的なので依存配列に含める必要はありません
 
   if (!isOpen) return null;
 
@@ -41,7 +46,8 @@ function Modal({ isOpen, item, onClose }) {
         borderRadius: '5px',
       }}>
         <p>{selectedMessage}</p>
-        <button onClick={onClose}>おかわりっ！</button>
+        <button onClick={onClose} style={{ padding: '5px', marginRight: '30px' }}>おかわりっ！</button>
+        <button onClick={handleCheckout} style={{ padding: '5px', marginLeft: '30px' }}>お会計！</button>
       </div>
     </div>
   );

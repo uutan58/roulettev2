@@ -48,7 +48,7 @@ function Modal({ isOpen, item, onClose }) {
         <p>{selectedMessage}</p>
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
           <button onClick={onClose} style={{ padding: '5px', margin: '0 15px' }}>おかわりっ！</button>
-          <button onClick={handleCheckout} style={{ padding: '5px', margin: '0 15px' }}>今日はもういらん！</button>
+          <button onClick={handleCheckout} style={{ padding: '5px', margin: '0 15px' }}>もういいかな…</button>
         </div>
       </div>
     </div>

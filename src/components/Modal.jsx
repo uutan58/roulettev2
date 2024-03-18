@@ -10,11 +10,11 @@ const messages = [
   '【{item}】にするわ〜。'
 ];
 
-function Modal({ isOpen, item, onClose }) {
+function Modal({ isOpen, item, onClose, stockedItems }) {
   const navigate = useNavigate();
 
   const handleCheckout = () => {
-    navigate('/checkout');
+    navigate('/checkout', { state: { stockedItems } });
   };
 
   const [selectedMessage, setSelectedMessage] = useState('');
@@ -48,7 +48,7 @@ function Modal({ isOpen, item, onClose }) {
         <p>{selectedMessage}</p>
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
           <button onClick={onClose} style={{ padding: '5px', margin: '0 15px' }}>おかわりっ！</button>
-          <button onClick={handleCheckout} style={{ padding: '5px', margin: '0 15px' }}>今日はもういらん！</button>
+          <button onClick={handleCheckout} style={{ padding: '5px', margin: '0 15px' }}>もういいかな…</button>
         </div>
       </div>
     </div>

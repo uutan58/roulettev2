@@ -10,11 +10,11 @@ const messages = [
   '【{item}】にするわ〜。'
 ];
 
-function Modal({ isOpen, item, onClose }) {
+function Modal({ isOpen, item, onClose, stockedItems }) {
   const navigate = useNavigate();
 
   const handleCheckout = () => {
-    navigate('/checkout');
+    navigate('/checkout', { state: { stockedItems } });
   };
 
   const [selectedMessage, setSelectedMessage] = useState('');

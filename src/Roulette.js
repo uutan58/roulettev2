@@ -5,6 +5,15 @@ import { Link } from 'react-router-dom';
 
 const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 
+const itemIcons = {
+  'レモンサワー': '🍋',
+  'ビール': '🍺',
+  '日本酒': '🍶',
+  'ハイボール': '🥂',
+  'ウイスキー': '🥃',
+  'ワイン': '🍷',
+};
+
 function Roulette() {
   const [isSpinning, setIsSpinning] = useState(false);
   const rotationRef = useRef(0);
@@ -16,9 +25,10 @@ function Roulette() {
   const lastTimeRef = useRef(null);
   const [selectedItem, setSelectedItem] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [items, setItems] = useState(['レモンサワー', 'ビール', '日本酒', 'ハイボール', 'ウイスキー', '焼酎']); // アプリ名の状態管理
+  const [items, setItems] = useState(['レモンサワー', 'ビール', '日本酒', 'ハイボール', 'ウイスキー', 'ワイン']); // アプリ名の状態管理
   const [editIndex, setEditIndex] = useState(null); // 編集中のアイテムのインデックス
   const [editText, setEditText] = useState(''); // 編集中のテキスト
+  const [stockedItems, setStockedItems] = useState([]);
 
   // 画面サイズに合わせてキャンバスサイズを動的に調整するuseCallback
   const updateCanvasSize = useCallback(() => {
@@ -129,7 +139,9 @@ function Roulette() {
             // 調整された角度を使用して12時の位置にあるアイテムのインデックスを計算
             let selectedIndex = Math.floor(((2 * Math.PI - adjustedFinalAngle) / (2 * Math.PI)) * itemsCount) % itemsCount;
             selectedIndex = (selectedIndex + itemsCount / 1.2) % itemsCount; // 正しいアイテムの選択のために半分のアイテム数を加算
+
             setSelectedItem(items[selectedIndex]);
+            setStockedItems(prev => [...prev, items[selectedIndex]]);
             setIsModalOpen(true);
         }
     };
@@ -172,12 +184,21 @@ function Roulette() {
           <canvas ref={canvasRef} width={canvasSize.width} height={canvasSize.height} />
         </div>
 
+        <div style={{ marginTop: '20px', display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+          {/* <h3 style={{ marginRight: '20px' }}>飲んだドリンク:</h3> */}
+          {stockedItems.map((item, index) => (
+            <div key={index} style={{ marginRight: '10px', display: 'flex', alignItems: 'center' }}>
+              {itemIcons[item] || '🚫'}{/* デフォルトアイコンとして絵文字を使用 */}
+            </div>
+          ))}
+        </div>
+
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Button onClick={startSpin} isPressed={isStartButtonPressed}>START</Button>
           <Button onClick={stopSpin} isPressed={isStopButtonPressed}>STOP</Button>
         </div>
         <img src="image1.png" alt="ほかになに飲むん？" style={{ maxWidth: '100%'}}/>
-        <Modal isOpen={isModalOpen} item={selectedItem} onClose={() => setIsModalOpen(false)} />
+        <Modal isOpen={isModalOpen} item={selectedItem} onClose={() => setIsModalOpen(false)} stockedItems={stockedItems} />
         </div>
 
         <div className="items-list" style={{ maxWidth: '400px', display: 'flex', flexWrap: 'wrap', boxSizing: 'border-box' }}>

@@ -23,7 +23,7 @@ function Home() {
       <img src="image.png" alt="自分、なに飲むん？" style={{ maxWidth: '100%', marginBottom: '25px' }} />
       <p style={{backgroundColor: 'white'}}>居酒屋やバーで、どのお酒を飲むか悩んでいるそこのあなたへ</p>
       <button onClick={navigateToRoulette}>ルーレットで決める</button>
-      <p style={{ position: 'absolute', bottom: '0px', textAlign: 'center', marginLeft: '15px' }}>
+      <p style={{ position: 'absolute', bottom: '0px', textAlign: 'center', marginLeft: '15px', backgroundColor: 'white' }}>
         ※本アプリはスマホでの使用を推奨しています。
       </p>
     </div>

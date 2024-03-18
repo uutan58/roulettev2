@@ -3,7 +3,14 @@ import Modal from './components/Modal';
 import Button from './components/Button';
 import { Link } from 'react-router-dom';
 
-const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+const colors = [
+  '#E74C3C', // 明るいレッド
+  '#E67E22', // 明るいオレンジ
+  '#F1C40F', // 明るいイエロー
+  '#2ECC71', // 明るいグリーン
+  '#3498DB', // 明るいブルー
+  '#9B59B6', // 明るいパープル
+];
 
 const itemIcons = {
   'レモンサワー': '🍋',
@@ -12,6 +19,11 @@ const itemIcons = {
   'ハイボール': '🥂',
   'ウイスキー': '🥃',
   'ワイン': '🍷',
+  '水': '🧊',
+  'お茶':'🍵',
+  'コーヒー':'☕️',
+  'ソフトドリンク':'🧃',
+  'カクテル':'🍸'
 };
 
 function Roulette() {

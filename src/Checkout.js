@@ -14,7 +14,7 @@ function Checkout() {
   return (
     <div style={{
       textAlign: 'center',
-      marginTop: '50px',
+      // marginTop: '50px',
       backgroundImage: `url(${backgroundImage})`,
       backgroundSize: 'cover', // 背景画像をカバーするように設定
       backgroundPosition: 'center', // 背景画像を中央に配置
@@ -24,20 +24,38 @@ function Checkout() {
       }}>
 
       <img src="image3.png" alt="自分、なに飲んだん？" style={{ maxWidth: '100%', marginBottom: '25px' }} />
-      {/* <p style={{backgroundColor: 'white'}}>今日も一日お疲れ様でした。　　　　　　　　　　家まで気をつけて帰ろう。</p> */}
-      <div style={{ backgroundColor: 'white', padding: '10px', borderRadius: '5px', margin: '20px' }}>
-        <h2>🍻今日の思い出たち🍻</h2>
+
+      <div style={{
+        backgroundColor: '#fff9d9',
+        padding: '10px',
+        borderRadius: '5px',
+        margin: '20px' }}>
+
+        <h2 style={{
+          fontFamily: 'Sawarabi Mincho',
+          color: '#071e3e'
+          }}>🍻今日の思い出🍻</h2>
+
         {stockedItems.length > 0 ? (
-          <div style={{ textAlign: 'left', marginLeft: '90px' }}>
+          <div style={{ color: '#071e3e', textAlign: 'center' }}>
             {stockedItems.map((item, index) => (
-              <div key={index} style={{ margin: '10px 0' }}>{`${index + 1}杯目: ${item}`}</div>
+              <div key={index} style={{ fontFamily: 'Sawarabi Mincho', margin: '10px 0' }}>{`${index + 1}杯目: ${item}`}</div>
             ))}
           </div>
         ) : (
           <p>アイテムが選択されていません。</p>
         )}
       </div>
-      <button onClick={goHome} style={{ padding: '10px', margin: '20px' }}>お家に帰る</button>
+      <button onClick={goHome}
+        style={{
+          fontFamily: 'Sawarabi Mincho',
+          color: '#071e3e',
+          padding: '10px',
+          margin: '20px',
+          borderRadius: '5px'
+          }}>
+            お家に帰る
+            </button>
     </div>
   );
 }

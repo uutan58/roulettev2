@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 
 const Button = ({ children, onClick }) => {
-  const [backgroundColor, setBackgroundColor] = useState('#FFFFFF'); // 初期背景色
-  const [isPressed, setIsPressed] = useState(false); // ボタンが押されているかの状態
+  const [backgroundColor, setBackgroundColor] = useState('#FFFFFF');
+  const [isPressed, setIsPressed] = useState(false);
 
-  // ランダムな色を生成する関数
   const getRandomColor = () => {
     const colors = [
-      '#e6194B', '#3cb44b', '#ffe119', '#0082c8', '#f58231', 
-      '#911eb4', '#46f0f0', '#f032e6', '#d2f53c', '#fabebe', 
-      '#008080', '#e6beff', '#aa6e28', '#fffac8', '#800000', 
-      '#aaffc3', '#808000', '#ffd8b1', '#000080', '#808080', 
-      '#ffe4e1', '#b15928'
+      '#ff8989', '#ff89c4', '#ff89ff', '#c489ff', '#8989ff', 
+      '#89c4ff', '#89ffff', '#89ffc4', '#89ff89', '#c4ff89',
+      '#ffff89', '#ffc489'
     ];
     return colors[Math.floor(Math.random() * colors.length)];
   };
@@ -26,8 +23,9 @@ const Button = ({ children, onClick }) => {
   const style = {
     width: '50px',
     height: '50px',
-    fontSize: '16px',
-    color: 'black',
+    fontFamily: 'Sawarabi Mincho',
+    fontSize: '13px',
+    color: '#071e3e',
     borderRadius: '50%',
     cursor: 'pointer',
     margin: '10px',

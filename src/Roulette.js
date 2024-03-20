@@ -37,7 +37,7 @@ function Roulette() {
   const lastTimeRef = useRef(null);
   const [selectedItem, setSelectedItem] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [items, setItems] = useState(['レモンサワー', 'ビール', '日本酒', 'ハイボール', 'ウイスキー', 'ワイン']); // アプリ名の状態管理
+  const [items, setItems] = useState(['レモンサワー', 'ビール', '日本酒', 'ハイボール', 'ウイスキー', 'ワイン']); // アイテム名の初期値
   const [editIndex, setEditIndex] = useState(null); // 編集中のアイテムのインデックス
   const [editText, setEditText] = useState(''); // 編集中のテキスト
   const [stockedItems, setStockedItems] = useState([]);
@@ -138,19 +138,19 @@ function Roulette() {
     setTimeout(() => setIsStopButtonPressed(false), 200);
     const decelerate = () => {
         if (rotationSpeed.current > 0.01) {
-            rotationSpeed.current *= 0.985; // 減速率をより小さくして緩やかに停止
+            rotationSpeed.current *= 0.985; // 緩やかに停止させる
             requestAnimationFrame(decelerate);
         } else {
             rotationSpeed.current = 0;
             setIsSpinning(false);
 
-            // ルーレットが停止した時点での角度（ラジアン単位）
-            const finalAngleAdjustment = 30 * (Math.PI / 180); // 15度のラジアン値
+            // ルーレットが停止した時点での角度
+            const finalAngleAdjustment = 30 * (Math.PI / 180);
             const adjustedFinalAngle = (rotationRef.current + finalAngleAdjustment) % (2 * Math.PI); // 調整された最終角度を計算
             const itemsCount = items.length; // アイテムの数
             // 調整された角度を使用して12時の位置にあるアイテムのインデックスを計算
             let selectedIndex = Math.floor(((2 * Math.PI - adjustedFinalAngle) / (2 * Math.PI)) * itemsCount) % itemsCount;
-            selectedIndex = (selectedIndex + itemsCount / 1.2) % itemsCount; // 正しいアイテムの選択のために半分のアイテム数を加算
+            selectedIndex = (selectedIndex + itemsCount / 1.2) % itemsCount;
 
             setSelectedItem(items[selectedIndex]);
             setStockedItems(prev => [...prev, items[selectedIndex]]);
@@ -164,6 +164,7 @@ function Roulette() {
     <div>
       <div className="canvas-container"
         style={{
+          backgroundColor: '#fff9d9',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -197,7 +198,6 @@ function Roulette() {
         </div>
 
         <div style={{ marginTop: '20px', display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-          {/* <h3 style={{ marginRight: '20px' }}>飲んだドリンク:</h3> */}
           {stockedItems.map((item, index) => (
             <div key={index} style={{ marginRight: '10px', display: 'flex', alignItems: 'center' }}>
               {itemIcons[item] || '🚫'}{/* デフォルトアイコンとして絵文字を使用 */}
@@ -213,9 +213,25 @@ function Roulette() {
         <Modal isOpen={isModalOpen} item={selectedItem} onClose={() => setIsModalOpen(false)} stockedItems={stockedItems} />
         </div>
 
-        <div className="items-list" style={{ maxWidth: '400px', display: 'flex', flexWrap: 'wrap', boxSizing: 'border-box' }}>
+        <div className="items-list"
+          style={{
+            fontFamily: 'Sawarabi Mincho',
+            maxWidth: '400px',
+            display: 'flex',
+            flexWrap: 'wrap',
+            boxSizing: 'border-box' }}>
+
           {items.map((item, index) => (
-            <div key={index} style={{ width: '50%', padding: '10px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+            <div key={index}
+              style={{
+                width: '50%',
+                padding: '10px',
+                boxSizing: 'border-box',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start'
+                }}>
+
               {/* アイテム名または編集用テキストボックス */}
               {editIndex === index ? (
                 <input
@@ -223,14 +239,19 @@ function Roulette() {
                   value={editText}
                   onChange={(e) => setEditText(e.target.value)}
                   autoFocus
-                  style={{ flexGrow: 1, marginBottom: '10px', width: '100%', boxSizing: 'border-box' }} // widthとboxSizingを調整
+                  style={{ flexGrow: 1, marginBottom: '10px', width: '100%', boxSizing: 'border-box' }}
                 />
               ) : (
-                <span style={{ flexGrow: 1, marginBottom: '10px', width: '100%' }}>{item}</span> // widthを100%に設定
+                <span style={{
+                  color: '#071e3e',
+                  flexGrow: 1,
+                  marginBottom: '10px',
+                  width: '100%'
+                }}>{item}</span>
               )}
 
-              {/* 編集または完了ボタン */}
-              <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
+              {/* 編集&完了ボタン */}
+              <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
                 <Button
                   onClick={() => editIndex === index ? updateItem(index, editText) : setEditIndex(index) || setEditText(item)}
                   style={{ padding: '5px 10px', fontSize: '0.5rem', minWidth: '64px', height: '32px' }}>

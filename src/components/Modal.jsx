@@ -41,14 +41,15 @@ function Modal({ isOpen, item, onClose, stockedItems }) {
       backgroundColor: 'rgba(0,0,0,0.5)',
     }}>
       <div style={{
+        fontFamily: 'Sawarabi Mincho',
         padding: '50px',
         backgroundColor: '#fff',
         borderRadius: '5px',
       }}>
         <p>{selectedMessage}</p>
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-          <button onClick={onClose} style={{ padding: '5px', margin: '0 15px' }}>おかわりっ！</button>
-          <button onClick={handleCheckout} style={{ padding: '5px', margin: '0 15px' }}>もういいかな…</button>
+          <button onClick={onClose} style={{ fontFamily: 'Sawarabi Mincho', padding: '5px', margin: '0 15px' }}>おかわりっ！</button>
+          <button onClick={handleCheckout} style={{ fontFamily: 'Sawarabi Mincho', padding: '5px', margin: '0 15px' }}>もういいかな…</button>
         </div>
       </div>
     </div>

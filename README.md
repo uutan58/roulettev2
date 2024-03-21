@@ -4,8 +4,6 @@
 
 ## サービスのURL
 
-文章
-
 https://roulettev2.vercel.app/
 
 <br />

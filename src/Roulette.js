@@ -101,9 +101,9 @@ function Roulette() {
       context.rotate(startAngle + Math.PI / colors.length);
       context.textAlign = 'right';
       context.fillStyle = 'white';
-      context.font = '14px "MS Mincho", "Hiragino Mincho ProN", serif';
+      context.font = '14px "Sawarabi Mincho"';
       context.fillText(items[i], radius - 10, 0);
-      context.strokeStyle = 'black';
+      // context.strokeStyle = 'black';
       context.lineWidth = 0.2;
       context.strokeText(items[i], radius - 10, 0);
       context.restore();

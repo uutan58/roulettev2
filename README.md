@@ -31,32 +31,32 @@ https://roulettev2.vercel.app
 ## 機能一覧
 | ホーム画面 |　ホーム画面 |
 | ---- | ---- |
-| <img src= "https://github.com/uutan58/roulettev2/assets/138564916/7072a4c7-17f9-413e-8dfb-685bf7a84239"  width= "600px"> |  ![スマホホーム画面](https://github.com/uutan58/roulettev2/assets/138564916/d404b1c1-9b2d-4c82-b06d-41679da2f75d) |
+| <img src= "https://github.com/uutan58/roulettev2/assets/138564916/7072a4c7-17f9-413e-8dfb-685bf7a84239" width= "600px"> |  ![スマホホーム画面](https://github.com/uutan58/roulettev2/assets/138564916/d404b1c1-9b2d-4c82-b06d-41679da2f75d) |
 | 「乾杯する」を押下することでルーレット画面へ遷移します | 同左 |
 
 | ルーレット画面 |　ルーレット画面 |
 | ---- | ---- |
-| ![PCルーレット画像](https://github.com/uutan58/roulettev2/assets/138564916/f6d18fe3-e46b-4f08-864d-22231377ef2b) | ![スマホルーレット画面](https://github.com/uutan58/roulettev2/assets/138564916/da23f1bd-e500-4b42-a044-1f2fbd124ba3) |
+| <img src= "https://github.com/uutan58/roulettev2/assets/138564916/f6d18fe3-e46b-4f08-864d-22231377ef2b" width= "600px"> | ![スマホルーレット画面](https://github.com/uutan58/roulettev2/assets/138564916/da23f1bd-e500-4b42-a044-1f2fbd124ba3) |
 | 「START」を押下することでルーレットが出現、回転が始まります。<br />「STOP」を押下すると回転速度を落としながらルーレットが止まります。| PCに比べると少し緩やかにルーレットが止まります。 |
 
 | アイテムセレクト画面 |　アイテムセレクト画面 |
 | ---- | ---- |
-| ![モーダル画面](https://github.com/uutan58/roulettev2/assets/138564916/fd319d49-01c9-48d9-901b-04d21085cd33) | ![モーダル画面](画像ディレクトリを記述) |
+| <img src= "https://github.com/uutan58/roulettev2/assets/138564916/fd319d49-01c9-48d9-901b-04d21085cd33" width= "600px"> | ![モーダル画面](https://github.com/uutan58/roulettev2/assets/138564916/e3b132d6-3388-474d-965a-46de76ca22ba) |
 | 矢印のところで止まったアイテムをモーダルに表示させます。<br />モーダル画面で表示されるコメントはランダムになっています。<br />また、「おかわり」を押下するとルーレット画面へ、「お会計」を押下するとお会計画面へ遷移します。 | 同左 |
 
 | アイテム編集 |　アイテム編集 |
 | ---- | ---- |
-| ![アイテム編集画像](https://github.com/uutan58/roulettev2/assets/138564916/3781c257-37f9-402a-9451-2aaa105e354f) | ![アイテム編集画像](https://github.com/uutan58/roulettev2/assets/138564916/492dcbd0-2508-443a-bd48-5fb1cc8721cb) |
+| <img src= "https://github.com/uutan58/roulettev2/assets/138564916/3781c257-37f9-402a-9451-2aaa105e354f" width= "600px"> | ![アイテム編集画像](https://github.com/uutan58/roulettev2/assets/138564916/492dcbd0-2508-443a-bd48-5fb1cc8721cb) |
 | ルーレット下部にあるアイテムリストから、アイテム名を変更することができます。 | 同左 |
 
 | ストック表示 |　ストック表示 |
 | ---- | ---- |
-| ![ストック画像](https://github.com/uutan58/roulettev2/assets/138564916/6959033b-6f38-47d2-a966-7510100ca7c2) | ![ストック画像](https://github.com/uutan58/roulettev2/assets/138564916/52b88ec0-d74b-442e-8580-8a2e754b79dc) |
+| <img src= "https://github.com/uutan58/roulettev2/assets/138564916/6959033b-6f38-47d2-a966-7510100ca7c2" width= "600px"> | ![ストック画像](https://github.com/uutan58/roulettev2/assets/138564916/52b88ec0-d74b-442e-8580-8a2e754b79dc) |
 | 「START、STOPボタン」の上に、ルーレットで出たアイテムのアイコン（画像赤枠内）が表示されていきます。 | 同左 |
 
 | お会計画面 |　お会計画面 |
 | ---- | ---- |
-| ![お会計画面画像](https://github.com/uutan58/roulettev2/assets/138564916/47af4b29-e9f0-447f-9e2a-e491cfeb89eb) | ![お会計画面画像](https://github.com/uutan58/roulettev2/assets/138564916/1747c0e6-b6b2-410f-b698-b99eac1c2f30) |
+| <img src= "https://github.com/uutan58/roulettev2/assets/138564916/47af4b29-e9f0-447f-9e2a-e491cfeb89eb" width= "600px"> | ![お会計画面画像](https://github.com/uutan58/roulettev2/assets/138564916/1747c0e6-b6b2-410f-b698-b99eac1c2f30) |
 | ルーレットで出たアイテムの一覧を表示します。<br />「Xで反省」を押下するとアイテム一覧をXでポストすることができます。<br />また、「帰宅する」を押下するとホーム画面へ遷移します。 | 同左 |
 
 <br />

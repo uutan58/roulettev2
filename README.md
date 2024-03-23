@@ -1,4 +1,4 @@
-![ヘッダー画像](https://github.com/uutan58/roulettev2/assets/138564916/307042ef-0c58-47e7-8785-f19981aef234)
+<img src="https://github.com/uutan58/roulettev2/assets/138564916/307042ef-0c58-47e7-8785-f19981aef234" width= "300px">
 
 <br />
 

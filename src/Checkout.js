@@ -13,8 +13,8 @@ function Checkout() {
   };
 
   const post = {
-    title: "今日、なに飲んだん？？",
-    url: "https://roulettev2.vercel.app/checkout",
+    title: "今日、なに飲んだん？？🍻今日の思い出🍻",
+    url: "https://roulettev2.vercel.app",
   };
   const handleTweet = () => {
     const tweetText = `${post.title}\n${stockedItems.map(

@@ -41,7 +41,7 @@ https://roulettev2.vercel.app
 
 | アイテムセレクト画面 |　アイテムセレクト画面 |
 | ---- | ---- |
-| <img src= "https://github.com/uutan58/roulettev2/assets/138564916/fd319d49-01c9-48d9-901b-04d21085cd33" width= "600px"> | ![モーダル画面](画像ディレクトリを記述) |
+| <img src= "https://github.com/uutan58/roulettev2/assets/138564916/fd319d49-01c9-48d9-901b-04d21085cd33" width= "600px"> | ![モーダル画面](<img src= "https://github.com/uutan58/roulettev2/assets/138564916/e3b132d6-3388-474d-965a-46de76ca22ba" width= "600px">) |
 | 矢印のところで止まったアイテムをモーダルに表示させます。<br />モーダル画面で表示されるコメントはランダムになっています。<br />また、「おかわり」を押下するとルーレット画面へ、「お会計」を押下するとお会計画面へ遷移します。 | 同左 |
 
 | アイテム編集 |　アイテム編集 |

@@ -32,7 +32,7 @@ function Home() {
       <img
         src="image1.png"
         alt="自分、なに飲むん？"
-        style={{ maxWidth: '100%', marginBottom: '25px' }}
+        style={{ maxWidth: '100%', marginBottom: '25px', marginLeft: '15px' }}
       />
       <p
         style={{

@@ -3,6 +3,7 @@ import Modal from './components/Modal';
 import Button from './components/Button';
 import { Link } from 'react-router-dom';
 
+// ルーレットの背景色
 const colors = [
   '#E74C3C', // 明るいレッド
   '#E67E22', // 明るいオレンジ
@@ -12,6 +13,7 @@ const colors = [
   '#9B59B6', // 明るいパープル
 ];
 
+// ドリンクのアイコン
 const itemIcons = {
   'レモンサワー': '🍋',
   'ビール': '🍺',
@@ -103,9 +105,6 @@ function Roulette() {
       context.fillStyle = 'white';
       context.font = '14px "Sawarabi Mincho"';
       context.fillText(items[i], radius - 10, 0);
-      // context.strokeStyle = 'black';
-      context.lineWidth = 0.2;
-      context.strokeText(items[i], radius - 10, 0);
       context.restore();
     });
 
@@ -116,7 +115,6 @@ function Roulette() {
     }
   }, [isSpinning, items]);
 
-  // `useEffect`で`draw`関数を初期化する際に、`requestAnimationFrame`を呼び出します。
   useEffect(() => {
     const animate = (time) => {
       if (isSpinning) {
@@ -144,7 +142,7 @@ function Roulette() {
             rotationSpeed.current = 0;
             setIsSpinning(false);
 
-            // ルーレットが停止した時点での角度
+            // ルーレットが停止した時点での角度を設定
             const finalAngleAdjustment = 30 * (Math.PI / 180);
             const adjustedFinalAngle = (rotationRef.current + finalAngleAdjustment) % (2 * Math.PI); // 調整された最終角度を計算
             const itemsCount = items.length; // アイテムの数
@@ -162,29 +160,20 @@ function Roulette() {
 
   return (
     <div>
+      {/* ルーレット */}
       <div className="canvas-container"
-        style={{
-          backgroundColor: '#fff9d9',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '100%',
-          overflow: 'hidden'
-        }}>
+        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 
-        <>
+        <div>
         <Link to="/">
           <img src="image1.png" alt="自分、なに飲むん？" style={{ maxWidth: '100%', marginBottom: '30px' }} />
         </Link>
-        </>
+        </div>
 
+        {/* 矢印のスタイル */}
         <div style={{
-          width: canvasSize.width,
-          height: canvasSize.height,
-          position: 'relative',
-          display: 'flex'}}>
-
+          position: 'relative'
+          }}>
           <div style={{
             borderLeft: '20px solid transparent',
             borderRight: '20px solid transparent',
@@ -192,74 +181,64 @@ function Roulette() {
             position: 'absolute',
             bottom: '93%',
             left: '50%',
-            transform: 'translateX(-50%)' }}></div>
+            transform: 'translateX(-50%)' }} />
 
+          {/* ルーレットを描画 */}
           <canvas ref={canvasRef} width={canvasSize.width} height={canvasSize.height} />
         </div>
 
-        <div style={{ marginTop: '20px', display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+        {/* 飲んだドリンクのストックのスタイル */}
+        <div style={{ marginTop: '20px', display: 'flex' }}>
           {stockedItems.map((item, index) => (
-            <div key={index} style={{ marginRight: '10px', display: 'flex', alignItems: 'center' }}>
-              {itemIcons[item] || '🚫'}{/* デフォルトアイコンとして絵文字を使用 */}
+            <div key={index}
+              style={{marginRight: '10px'}}>
+              {itemIcons[item] || '🚫'}{/* デフォルトアイコン */}
             </div>
           ))}
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ display: 'flex' }}>
           <Button onClick={startSpin} isPressed={isStartButtonPressed}>START</Button>
           <Button onClick={stopSpin} isPressed={isStopButtonPressed}>STOP</Button>
         </div>
-        <img src="image2.png" alt="ほかになに飲むん？" style={{ maxWidth: '100%'}}/>
+
+        <img src="image2.png" alt="ほかになに飲むん？" style={{ maxWidth: '100%' }}/>
+
         <Modal isOpen={isModalOpen} item={selectedItem} onClose={() => setIsModalOpen(false)} stockedItems={stockedItems} />
         </div>
 
-        <div className="items-list"
-          style={{
-            fontFamily: 'Sawarabi Mincho',
-            maxWidth: '400px',
-            display: 'flex',
-            flexWrap: 'wrap',
-            boxSizing: 'border-box' }}>
+        {/* 編集ボタン全体のスタイル */}
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div className="items-list"
+            style={{ fontFamily: 'Sawarabi Mincho', display: 'flex', flexWrap: 'wrap' }}>
 
-          {items.map((item, index) => (
-            <div key={index}
-              style={{
-                width: '50%',
-                padding: '10px',
-                boxSizing: 'border-box',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start'
-                }}>
+            {/* 編集ボタンのスタイル */}
+            {items.map((item, index) => (
+              <div key={index} style={{ width: '50%' }}>
 
-              {/* アイテム名または編集用テキストボックス */}
-              {editIndex === index ? (
-                <input
-                  type="text"
-                  value={editText}
-                  onChange={(e) => setEditText(e.target.value)}
-                  autoFocus
-                  style={{ flexGrow: 1, marginBottom: '10px', width: '100%', boxSizing: 'border-box' }}
-                />
-              ) : (
-                <span style={{
-                  color: '#071e3e',
-                  flexGrow: 1,
-                  marginBottom: '10px',
-                  width: '100%'
-                }}>{item}</span>
-              )}
+                {/* 編集時のテキストボックスのスタイル */}
+                {editIndex === index ? (
+                  <input
+                    type="text"
+                    value={editText}
+                    onChange={(e) => setEditText(e.target.value)}
+                    autoFocus
+                    style={{ boxSizing: 'border-box' }}
+                  />
+                ) : (
+                  <span style={{ color: '#071e3e' }}>{item}</span>
+                )}
 
-              {/* 編集&完了ボタン */}
-              <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-                <Button
-                  onClick={() => editIndex === index ? updateItem(index, editText) : setEditIndex(index) || setEditText(item)}
-                  style={{ padding: '5px 10px', fontSize: '0.5rem', minWidth: '64px', height: '32px' }}>
-                  {editIndex === index ? '完 了' : '編 集'}
-                </Button>
+                {/* 編集&完了ボタン */}
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                  <Button
+                    onClick={() => editIndex === index ? updateItem(index, editText) : setEditIndex(index) || setEditText(item)}>
+                    {editIndex === index ? '完 了' : '編 集'}
+                  </Button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
   );

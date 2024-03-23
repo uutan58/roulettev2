@@ -6,13 +6,15 @@ import Checkout from './Checkout';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/roulette" element={<Roulette />} />
-        <Route path="/checkout" element={<Checkout />} />
-      </Routes>
-    </Router>
+    <div style={{ backgroundColor: '#fff9d9', minHeight: '100vh' }}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/roulette" element={<Roulette />} />
+          <Route path="/checkout" element={<Checkout />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

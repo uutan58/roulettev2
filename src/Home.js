@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import backgroundImage from './images/favicon.png'; // 背景画像のパスをインポート
+import Button from './components/Button';
+
 
 function Home() {
   const navigate = useNavigate();
@@ -10,47 +11,74 @@ function Home() {
   };
 
   return (
-    <div style={{
+  <div
+    style={{
       textAlign: 'center',
-      // marginTop: '50px',
-      backgroundImage: `url(${backgroundImage})`,
-      backgroundSize: '100%', // 背景画像をカバーするように設定
-      backgroundPosition: 'center', // 背景画像を中央に配置
-      backgroundRepeat: 'no-repeat', // 画像を繰り返さない
+      backgroundColor: '#fff9d9',
       width: '100%',
-      height: '100vh' }}>
-      <div style={{
-        backgroundColor: '#fff9d9',
+      height: '100vh',
+      position: 'relative',
+    }}
+  >
+    <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          height: '70vh',
+          flexDirection: 'column',
+        }}
+      >
+    <div>
+      <img
+        src="image1.png"
+        alt="自分、なに飲むん？"
+        style={{ maxWidth: '100%', marginBottom: '25px' }}
+      />
+      <p
+        style={{
+          fontFamily: 'Sawarabi Mincho',
+          color: '#071e3e',
+        }}
+      >
+        次の1杯は運命（ルーレット）に任せてみませんか?
+        <br />
+        外食時に何を飲もうか迷った時の強い味方です。
+        <br />
+        ルーレットで普段は飲まないドリンクを楽しもう！
+      </p>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          height: '40vh'
         }}>
-        <div>
-          <img src="image.png" alt="自分、なに飲むん？" style={{ maxWidth: '100%', marginBottom: '25px' }} />
-          <p style={{fontFamily: 'Sawarabi Mincho', color: '#071e3e', backgroundColor: '#fff9d9'}}>次の1杯は運命に任せてみませんか?「お酒ルーレット」は、居酒屋や外食時に何を飲もうか迷った時の強い味方です。豊富な種類からランダムに1杯が選ばれ、新たなお気に入りになるかもしれません。ワンタップで新しいお酒を発見でき、楽しい驚きを提供します。お酒ルーレットで、新しい飲み物の世界を探検してみてください</p>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <button onClick={navigateToRoulette}
-                style={{
-                  fontFamily: 'Sawarabi Mincho',
-                  color: '#071e3e',
-                  padding: '10px',
-                  margin: '20px',
-                  borderRadius: '5px',
-                  }}>
-                  飲み始める
-              </button>
-            </div>
-          <p style={{
-            fontFamily: 'Sawarabi Mincho',
-            position: 'absolute',
-            bottom: '0px',
-            textAlign: 'center',
-            marginLeft: '15px',
-            backgroundColor: '#fff9d9'
-            }}>
-            ※本アプリはスマホでの使用を推奨しています。
-          </p>
-        </div>
+        <img src="favicon.png" alt="アイコン" style={{ maxWidth: '100%' }} />
+      </div>
+      <p
+        style={{
+          fontFamily: 'Sawarabi Mincho',
+          position: 'absolute',
+          bottom: '50px',
+          textAlign: 'center',
+          marginLeft: '15px',
+        }}
+      >
+        ※本アプリはスマホでの使用を推奨しています。
+      </p>
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '250px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+        }}
+      >
+        <Button onClick={navigateToRoulette}>乾杯する</Button>
       </div>
     </div>
-  );
+  </div>
+  </div>
+);
 }
 
 export default Home;

@@ -175,7 +175,7 @@ function Roulette() {
 
         <>
         <Link to="/">
-          <img src="image.png" alt="自分、なに飲むん？" style={{ maxWidth: '100%', marginBottom: '30px' }} />
+          <img src="image1.png" alt="自分、なに飲むん？" style={{ maxWidth: '100%', marginBottom: '30px' }} />
         </Link>
         </>
 
@@ -209,7 +209,7 @@ function Roulette() {
           <Button onClick={startSpin} isPressed={isStartButtonPressed}>START</Button>
           <Button onClick={stopSpin} isPressed={isStopButtonPressed}>STOP</Button>
         </div>
-        <img src="image1.png" alt="ほかになに飲むん？" style={{ maxWidth: '100%'}}/>
+        <img src="image2.png" alt="ほかになに飲むん？" style={{ maxWidth: '100%'}}/>
         <Modal isOpen={isModalOpen} item={selectedItem} onClose={() => setIsModalOpen(false)} stockedItems={stockedItems} />
         </div>
 
@@ -255,7 +255,7 @@ function Roulette() {
                 <Button
                   onClick={() => editIndex === index ? updateItem(index, editText) : setEditIndex(index) || setEditText(item)}
                   style={{ padding: '5px 10px', fontSize: '0.5rem', minWidth: '64px', height: '32px' }}>
-                  {editIndex === index ? '完了' : '編集'}
+                  {editIndex === index ? '完 了' : '編 集'}
                 </Button>
               </div>
             </div>

@@ -4,6 +4,7 @@ const Button = ({ children, onClick }) => {
   const [backgroundColor, setBackgroundColor] = useState('#FFFFFF');
   const [isPressed, setIsPressed] = useState(false);
 
+  // ボタンの背景色
   const getRandomColor = () => {
     const colors = [
       '#ff8989', '#ff89c4', '#ff89ff', '#c489ff', '#8989ff', 
@@ -24,17 +25,15 @@ const Button = ({ children, onClick }) => {
     width: '80px',
     height: '60px',
     fontFamily: 'Sawarabi Mincho',
-    fontSize: '15px',
+    fontSize: '14px',
     color: '#071e3e',
     borderRadius: '10px',
     cursor: 'pointer',
     margin: '10px',
-    display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor,
     boxShadow: '0 4px #888',
-    transform: isPressed ? 'translateY(2px)' : 'translateY(-2px)', // 押されている状態に応じて変更
+    transform: isPressed ? 'translateY(2px)' : 'translateY(-2px)'
   };
 
   return (

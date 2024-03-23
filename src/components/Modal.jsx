@@ -2,13 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 
-// messages配列をコンポーネントの外部に配置
 const messages = [
-  '【{item}】にするわ〜。これ何杯目なん？飲み過ぎ注意やで〜。',
-  '【{item}】にするわ〜。お酒と同じだけの水飲んだほうがええで。',
-  '【{item}】にするわ〜。お前は明日を一日無駄にする覚悟ができているのか…？',
-  '【{item}】にするわ〜。これを飲んだ人は、お酒で失敗したエピソードを発表してや〜。',
-  '【{item}】にするわ〜。'
+'よっしゃ、ルーレットの結果は【{item}】や！',
+'さあ、次の一杯は【{item}】に決定やで〜。',
+'【{item}】にするわ〜、これはいい選択っ。',
+'今度は【{item}】を試してみようかな〜。',
+'おっと、ルーレットが指したのは【{item}】やな。',
+'【{item}】にしよう。これが運命や！',
+'次は【{item}】にしよう。何度でも新しい体験ができるからな。',
+'【{item}】, これが次の選択やで。',
+'ルーレットの判断は絶対。次は【{item}】や！',
+'【{item}】が選ばれたんや。これで行こう！',
+'さて、次のラウンドは【{item}】やで。',
+'【{item}】が次のお酒や。これがルーレットの選択やね。',
+'【{item}】で決まり！これが次の一杯や。',
+'ルーレットの選択、【{item}】やな。しゃーない、これでいこう！',
+'【{item}】、これが次の飲み物や。楽しみやないか。',
+'次の一杯は【{item}】に決まったわ。楽しみやな！',
 ];
 
 function Modal({ isOpen, item, onClose, stockedItems }) {
@@ -25,7 +35,7 @@ function Modal({ isOpen, item, onClose, stockedItems }) {
       const randomMessage = messages[Math.floor(Math.random() * messages.length)].replace('{item}', item);
       setSelectedMessage(randomMessage);
     }
-  }, [isOpen, item]); // messagesは静的なので依存配列に含める必要はありません
+  }, [isOpen, item]);
 
   if (!isOpen) return null;
 
@@ -33,7 +43,6 @@ function Modal({ isOpen, item, onClose, stockedItems }) {
     <div style={{
       position: 'fixed',
       top: 0,
-      left: 0,
       width: '100%',
       height: '100%',
       display: 'flex',
@@ -48,7 +57,7 @@ function Modal({ isOpen, item, onClose, stockedItems }) {
         borderRadius: '5px',
       }}>
         <p>{selectedMessage}</p>
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Button onClick={onClose}>おかわり</Button>
           <Button onClick={handleCheckout}>お会計</Button>
         </div>

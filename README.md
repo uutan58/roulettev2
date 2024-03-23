@@ -1,4 +1,4 @@
-<img src="https://github.com/uutan58/roulettev2/assets/138564916/307042ef-0c58-47e7-8785-f19981aef234" width= "300px">
+<img src="https://github.com/uutan58/roulettev2/assets/138564916/307042ef-0c58-47e7-8785-f19981aef234" width= "1200px">
 
 <br />
 
@@ -31,7 +31,7 @@ https://roulettev2.vercel.app
 ## 機能一覧
 | ホーム画面 |　ホーム画面 |
 | ---- | ---- |
-|  ![PCホーム画像](https://github.com/uutan58/roulettev2/assets/138564916/7072a4c7-17f9-413e-8dfb-685bf7a84239) |  ![スマホホーム画面](https://github.com/uutan58/roulettev2/assets/138564916/d404b1c1-9b2d-4c82-b06d-41679da2f75d) |
+| <img src= "https://github.com/uutan58/roulettev2/assets/138564916/7072a4c7-17f9-413e-8dfb-685bf7a84239"  width= "600px"> |  ![スマホホーム画面](https://github.com/uutan58/roulettev2/assets/138564916/d404b1c1-9b2d-4c82-b06d-41679da2f75d) |
 | 「乾杯する」を押下することでルーレット画面へ遷移します | 同左 |
 
 | ルーレット画面 |　ルーレット画面 |

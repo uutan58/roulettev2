@@ -22,10 +22,10 @@ const Button = ({ children, onClick }) => {
 
   // ボタンのスタイル
   const style = {
-    width: '90px',
+    width: '110px',
     height: '60px',
     fontFamily: 'Sawarabi Mincho',
-    fontSize: '15px',
+    fontSize: '14px',
     color: '#071e3e',
     borderRadius: '10px',
     cursor: 'pointer',

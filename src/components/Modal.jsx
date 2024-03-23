@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from './Button';
 
 // messages配列をコンポーネントの外部に配置
 const messages = [
@@ -48,8 +49,8 @@ function Modal({ isOpen, item, onClose, stockedItems }) {
       }}>
         <p>{selectedMessage}</p>
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-          <button onClick={onClose} style={{ fontFamily: 'Sawarabi Mincho', padding: '5px', margin: '0 15px' }}>おかわりっ！</button>
-          <button onClick={handleCheckout} style={{ fontFamily: 'Sawarabi Mincho', padding: '5px', margin: '0 15px' }}>もういいかな…</button>
+          <Button onClick={onClose}>おかわり</Button>
+          <Button onClick={handleCheckout}>お会計</Button>
         </div>
       </div>
     </div>

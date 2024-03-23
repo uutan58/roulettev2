@@ -4,9 +4,4 @@
     max-width: 300px; /* 最大幅を設定して画面幅を超えないようにする */
     margin: auto;
   }
-
-  .modal {
-    z-index: 1000;
-  }
-
 }

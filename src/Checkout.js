@@ -15,17 +15,11 @@ function Checkout() {
   const post = {
     title: "今日、なに飲んだん？？🍻今日の思い出🍻",
     url: "https://roulettev2.vercel.app",
+    text: "#自分なに飲むん"
   };
   const handleTweet = () => {
-    const tweetText = `${post.title}\n${stockedItems.map(
-      (item, index) => `${index + 1}杯目: ${item}`
-    ).join('\n')}`;
-
-    const twitterUrl = `https://twitter.com/share?url=${encodeURIComponent(
-      post.url
-    )}&text=${encodeURIComponent(tweetText)}`;
-
-    // 新しいタブでTwitter共有ページを開く
+    const tweetText = `${post.title}\n${stockedItems.map((item, index) => `${index + 1}杯目: ${item}`).join('\n')}\n${post.text}`;
+    const twitterUrl = `https://twitter.com/share?url=${encodeURIComponent(post.url)}&text=${encodeURIComponent(tweetText)}`;
     window.open(twitterUrl, "_blank");
   };
 
